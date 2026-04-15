@@ -1,39 +1,14 @@
-/**
- * ============================================================
- *  CDA Scooters SAS — server.js (Backend Refactorizado)
- *  Patrón aplicado: FACADE (Estructural)
- * ============================================================
- *
- *  ¿Qué es el patrón Facade?
- *  --------------------------
- *  El patrón Facade proporciona una interfaz simplificada
- *  para un subsistema complejo. En lugar de que el cliente
- *  (frontend o rutas Express) llame directamente a OpenAI,
- *  al sistema de archivos y a la validación por separado,
- *  existe UNA sola clase (CDAFacade) que lo coordina todo.
- *
- *  Estructura:
- *    ┌─────────────┐     llama a     ┌──────────────────┐
- *    │  Rutas      │ ─────────────▶  │   CDAFacade      │
- *    │  Express    │                 │  (interfaz única) │
- *    └─────────────┘                 └──────────────────┘
- *                                           │
- *                        ┌─────────────────┬┴────────────────────┐
- *                        ▼                 ▼                      ▼
- *                   OpenAIService    ValidadorMensajes    RepositorioContactos
- *                   (subsistema 1)   (subsistema 2)       (subsistema 3)
- */
-
 require("dotenv").config();
 const express = require("express");
 const cors    = require("cors");
 const fs      = require("fs");
 const OpenAI  = require("openai");
-
+const path = require("path");
 const app    = express();
 app.use(cors());
 app.use(express.json());
-
+// Servir archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, "../frontend")));
 // ─────────────────────────────────────────────────────────────
 //  SUBSISTEMA 1: OpenAIService
 //  Encapsula toda la lógica de comunicación con la API de OpenAI.
@@ -260,9 +235,9 @@ app.post("/contacto", (req, res) => {
   const resultado = cdaFacade.procesarContacto(req.body);
   res.json({ mensaje: resultado.mensaje });
 });
-
 // ─────────────────────────────────────────────────────────────
-app.listen(3000, () => {
-  console.log("🚀 Servidor CDA corriendo en http://localhost:3000");
-  console.log("📐 Patrón FACADE activo — CDAFacade centraliza todo");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
 });
