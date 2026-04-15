@@ -9,23 +9,56 @@
 </head>
 <body>
 
-<!-- ====================================================
-     BOTÓN FLOTANTE WHATSAPP
-==================================================== -->
+<!-- WHATSAPP FLOTANTE -->
 <a class="wa-float"
    href="https://wa.me/573118006270?text=Hola%2C%20quiero%20información%20sobre%20la%20revisión%20técnico-mecánica"
    target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
+<!-- CHATBOT TOGGLE -->
+<button class="chat-toggle" onclick="toggleChat()" aria-label="Asistente virtual">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+  </svg>
+</button>
+
+<!-- CHATBOT -->
+<div class="chatbot" id="chatbot">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="chat-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="chat-header-name">Asistente CDA</div>
+        <div class="chat-header-status">
+          <span class="chat-status-dot"></span>
+          En línea
+        </div>
+      </div>
+    </div>
+    <button onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="messages">
+    <div class="message bot">Bienvenido a CDA Scooters SAS. ¿En qué puedo ayudarle?</div>
+  </div>
+  <div class="chat-input">
+    <input id="input" placeholder="Escriba su consulta..." onkeydown="if(event.key==='Enter') sendMessage()">
+    <button onclick="sendMessage()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
 <!-- ====================================================
      HEADER
 ==================================================== -->
 <header id="navbar">
-
-  <!-- Barra de contacto -->
   <div class="header-top">
     <div class="container">
       <span class="contact-item">
@@ -43,15 +76,13 @@
     </div>
   </div>
 
-  <!-- Logo + Nav -->
   <div class="header-main">
     <div class="container">
       <a class="logo" href="#inicio">
         <div class="logo-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 17H3v-5l2-5h14l2 5v5h-2"/>
-            <circle cx="7" cy="17" r="2"/>
-            <circle cx="17" cy="17" r="2"/>
+            <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
             <polyline points="9 11 11 13 15 9"/>
           </svg>
         </div>
@@ -72,24 +103,23 @@
       <nav class="nav" id="main-nav">
         <a href="#inicio"         onclick="closeNav()">Inicio</a>
         <a href="#servicios"      onclick="closeNav()">Servicios</a>
-        <a href="#asistir"        onclick="closeNav()">¿Cómo asistir?</a>
+        <a href="#asistir"        onclick="closeNav()">Cómo asistir</a>
         <a href="#contacto"       onclick="closeNav()">Contacto</a>
         <a href="#terminos"       onclick="closeNav()">Términos</a>
         <a href="#seguridad-vial" onclick="closeNav()">Seguridad vial</a>
       </nav>
+      <button class="nav-cta" onclick="openModal('general')">Agendar cita</button>
     </div>
 
-    <!-- Menú móvil -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="#inicio"         onclick="closeNav()">Inicio</a>
       <a href="#servicios"      onclick="closeNav()">Servicios</a>
-      <a href="#asistir"        onclick="closeNav()">¿Cómo asistir?</a>
+      <a href="#asistir"        onclick="closeNav()">Cómo asistir</a>
       <a href="#contacto"       onclick="closeNav()">Contacto</a>
       <a href="#terminos"       onclick="closeNav()">Términos y condiciones</a>
       <a href="#seguridad-vial" onclick="closeNav()">Política de seguridad vial</a>
     </div>
   </div>
-
 </header>
 
 <!-- ====================================================
@@ -98,16 +128,15 @@
 <section id="inicio">
   <div class="container">
     <div class="hero-grid">
-
       <div class="hero-content">
         <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Autorizado — Ministerio de Transporte · RUNT Colombia
+          <span class="hero-badge-dot"></span>
+          Habilitado — Ministerio de Transporte · RUNT Colombia
         </div>
 
         <h1 class="hero-title">
           Centro de Diagnóstico<br>
-          <em>Automotriz</em> habilitado<br>
+          <strong>Automotriz</strong> certificado<br>
           en Acacías, Meta
         </h1>
 
@@ -116,68 +145,89 @@
         </p>
 
         <div class="hero-actions">
-          <button class="btn btn-danger btn-lg" onclick="openModal('general')">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <button class="btn btn-cta btn-lg" onclick="openModal('general')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             Agendar cita
           </button>
           <a class="btn btn-ghost btn-lg"
              href="https://wa.me/573118006270?text=Hola%2C%20necesito%20información%20sobre%20la%20revisión%20técnico-mecánica"
              target="_blank" rel="noopener">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Consultar por WhatsApp
           </a>
         </div>
 
         <div class="hero-stats">
-          <div>
+          <div class="hero-stat">
             <div class="stat-num">+5 años</div>
             <div class="stat-label">De experiencia</div>
           </div>
-          <div>
+          <div class="hero-stat">
             <div class="stat-num">3</div>
             <div class="stat-label">Tipos de vehículos</div>
           </div>
-          <div>
+          <div class="hero-stat">
             <div class="stat-num">100%</div>
             <div class="stat-label">Habilitado</div>
           </div>
         </div>
       </div>
 
-      <!-- Tarjeta visual lateral -->
       <div class="hero-visual">
         <div class="hero-card">
-          <div class="hc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
-              <path d="M5 17H3v-5l2-5h14l2 5v5h-2"/>
-              <circle cx="7" cy="17" r="2"/>
-              <circle cx="17" cy="17" r="2"/>
-            </svg>
-          </div>
-          <p class="hc-title">Revisión técnico-mecánica</p>
-          <p class="hc-desc">Proceso rápido y transparente para circular legalmente por toda Colombia.</p>
+          <div class="hc-label">Proceso de revisión</div>
+          <p class="hc-title">Revisión técnico-mecánica y de emisiones</p>
           <ul class="hc-list">
-            <li><span class="hc-check">✓</span> Diagnóstico de frenos y dirección</li>
-            <li><span class="hc-check">✓</span> Control de emisiones de gases</li>
-            <li><span class="hc-check">✓</span> Revisión de luces y señalización</li>
-            <li><span class="hc-check">✓</span> Inspección del sistema de escape</li>
-            <li><span class="hc-check">✓</span> Certificado oficial inmediato</li>
+            <li>
+              <span class="hc-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Diagnóstico de frenos y dirección
+            </li>
+            <li>
+              <span class="hc-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Control de emisiones de gases
+            </li>
+            <li>
+              <span class="hc-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Revisión de luces y señalización
+            </li>
+            <li>
+              <span class="hc-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Inspección del sistema de escape
+            </li>
+            <li>
+              <span class="hc-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Certificado oficial inmediato
+            </li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ====================================================
-     STRIP DE REQUISITOS
-==================================================== -->
+<!-- STRIP DE REQUISITOS -->
 <div class="requisitos-strip">
   <div class="container">
     <div class="req-inner">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-      <p><strong>¿Qué debes traer?</strong> &nbsp;SOAT vigente · Documento de identidad · Tarjeta de propiedad · Licencia de tránsito</p>
+      <div class="req-label">Documentos requeridos</div>
+      <div class="req-items">
+        <div class="req-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          SOAT vigente
+        </div>
+        <div class="req-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="13" x2="13" y2="13"/></svg>
+          Documento de identidad
+        </div>
+        <div class="req-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+          Tarjeta de propiedad
+        </div>
+        <div class="req-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          Licencia de tránsito
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -190,13 +240,15 @@
     <div class="text-center reveal">
       <div class="section-eyebrow">Lo que hacemos</div>
       <h2 class="section-title">Nuestros servicios</h2>
+      <div class="section-divider"></div>
       <p class="section-subtitle">Revisiones técnico-mecánicas y de emisiones contaminantes reglamentadas por el Ministerio de Transporte de Colombia.</p>
     </div>
 
     <div class="services-grid">
 
-      <!-- Motos -->
+      <!-- Motocicletas -->
       <article class="service-card reveal">
+        <div class="service-card-accent"></div>
         <div class="service-card-top">
           <div class="service-icon si-azul">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -205,18 +257,30 @@
             </svg>
           </div>
           <h3 class="service-name">Motocicletas</h3>
-          <p class="service-desc">Verificación integral de motos de todas las cilindrajes para garantizar circulación legal y segura en las vías colombianas.</p>
+          <p class="service-desc">Verificación integral para motos de todas las cilindrajes. Garantice la circulación legal y segura en las vías colombianas.</p>
         </div>
         <div class="service-card-body">
           <div class="service-price">
-            <span class="price-label">Desde</span>
-            <span class="price-val">&nbsp;$180.000 COP</span>
+            <span class="price-label">Desde&nbsp;</span>
+            <span class="price-val">$180.000 COP</span>
           </div>
           <ul class="service-features">
-            <li><span class="feat-check">✓</span> Revisión de frenos delantero y trasero</li>
-            <li><span class="feat-check">✓</span> Control de emisiones de gases</li>
-            <li><span class="feat-check">✓</span> Luces, pito y espejos</li>
-            <li><span class="feat-check">✓</span> Llantas y sistema de suspensión</li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Revisión de frenos delantero y trasero
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Control de emisiones de gases
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Luces, pito y espejos
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Llantas y sistema de suspensión
+            </li>
           </ul>
           <div class="service-actions">
             <button class="btn btn-primary btn-block"
@@ -233,6 +297,7 @@
 
       <!-- Automóviles -->
       <article class="service-card reveal">
+        <div class="service-card-accent red"></div>
         <div class="service-card-top">
           <div class="service-icon si-rojo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -245,17 +310,29 @@
         </div>
         <div class="service-card-body">
           <div class="service-price">
-            <span class="price-label">Desde</span>
-            <span class="price-val">&nbsp;$280.000 COP</span>
+            <span class="price-label">Desde&nbsp;</span>
+            <span class="price-val">$280.000 COP</span>
           </div>
           <ul class="service-features">
-            <li><span class="feat-check">✓</span> Sistema de frenos ABS y convencional</li>
-            <li><span class="feat-check">✓</span> Diagnóstico OBD y emisiones CO₂</li>
-            <li><span class="feat-check">✓</span> Suspensión, dirección y alineación</li>
-            <li><span class="feat-check">✓</span> Sistema eléctrico y luces</li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Sistema de frenos ABS y convencional
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Diagnóstico OBD y emisiones CO₂
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Suspensión, dirección y alineación
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Sistema eléctrico y luces
+            </li>
           </ul>
           <div class="service-actions">
-            <button class="btn btn-danger btn-block"
+            <button class="btn btn-primary btn-block"
               onclick="openWhatsApp('Hola, quiero agendar una revisión técnico-mecánica para mi automóvil')">
               Agendar cita
             </button>
@@ -269,6 +346,7 @@
 
       <!-- Motocarros -->
       <article class="service-card reveal">
+        <div class="service-card-accent green"></div>
         <div class="service-card-top">
           <div class="service-icon si-verde">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -282,14 +360,26 @@
         </div>
         <div class="service-card-body">
           <div class="service-price">
-            <span class="price-label">Desde</span>
-            <span class="price-val">&nbsp;$220.000 COP</span>
+            <span class="price-label">Desde&nbsp;</span>
+            <span class="price-val">$220.000 COP</span>
           </div>
           <ul class="service-features">
-            <li><span class="feat-check">✓</span> Estructura, chasis y carrocería</li>
-            <li><span class="feat-check">✓</span> Sistema de carga y frenos</li>
-            <li><span class="feat-check">✓</span> Control de emisiones riguroso</li>
-            <li><span class="feat-check">✓</span> Certificado habilitación RUNT</li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Estructura, chasis y carrocería
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Sistema de carga y frenos
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Control de emisiones riguroso
+            </li>
+            <li>
+              <span class="feat-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Certificado habilitación RUNT
+            </li>
           </ul>
           <div class="service-actions">
             <button class="btn btn-primary btn-block"
@@ -314,14 +404,14 @@
 <section id="asistir">
   <div class="container">
     <div class="text-center reveal">
-      <div class="section-eyebrow">Prepárate antes de venir</div>
-      <h2 class="section-title">¿Cómo debes asistir?</h2>
-      <p class="section-subtitle">Reúne estos requisitos antes de venir al CDA para garantizar una atención rápida y sin inconvenientes.</p>
+      <div class="section-eyebrow">Prepárese antes de venir</div>
+      <h2 class="section-title">¿Cómo debe asistir?</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Reúna estos requisitos para garantizar una atención ágil y sin contratiempos en nuestras instalaciones.</p>
     </div>
 
-    <div class="asistir-grid">
-
-      <div class="asistir-card reveal">
+    <div class="asistir-grid reveal">
+      <div class="asistir-card">
         <div class="asistir-num">01</div>
         <h3 class="asistir-title">Documentos obligatorios</h3>
         <ul class="asistir-list">
@@ -332,33 +422,30 @@
           <li>Para servicio público: tarjeta de operación</li>
         </ul>
       </div>
-
-      <div class="asistir-card reveal">
+      <div class="asistir-card">
         <div class="asistir-num">02</div>
         <h3 class="asistir-title">Estado del vehículo</h3>
         <ul class="asistir-list">
           <li>Niveles de aceite y agua en punto</li>
           <li>Llantas en buen estado y con presión correcta</li>
-          <li>Todas las luces funcionando (incluidas las de pare)</li>
-          <li>Limpiaparabrisas en buen estado (aplica automóviles)</li>
-          <li>Frenos operativos sin ruidos anormales</li>
+          <li>Todas las luces funcionando correctamente</li>
+          <li>Limpiaparabrisas operativo (automóviles)</li>
+          <li>Frenos sin ruidos anormales</li>
           <li>Espejos retrovisores sin daños</li>
         </ul>
       </div>
-
-      <div class="asistir-card reveal">
+      <div class="asistir-card">
         <div class="asistir-num">03</div>
         <h3 class="asistir-title">Recomendaciones previas</h3>
         <ul class="asistir-list">
           <li>Llegar 15 minutos antes de la cita</li>
-          <li>El vehículo debe venir limpio (exterior y motor)</li>
-          <li>No modificaciones no homologadas</li>
+          <li>Vehículo limpio en exterior y motor</li>
+          <li>Sin modificaciones no homologadas</li>
           <li>Tanque con combustible suficiente</li>
           <li>Extintor vigente (vehículos de carga)</li>
         </ul>
       </div>
-
-      <div class="asistir-card reveal">
+      <div class="asistir-card">
         <div class="asistir-num">04</div>
         <h3 class="asistir-title">Proceso de revisión</h3>
         <ul class="asistir-list">
@@ -370,23 +457,20 @@
           <li>Duración aproximada: 45–60 minutos</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- Banner CTA -->
     <div class="cta-banner reveal">
-      <div>
-        <h3>¿Listo para tu revisión?</h3>
-        <p>Agenda tu cita y evita filas. Atención de lunes a viernes 7:00 a.m. – 5:00 p.m. · Sábados 7:00 a.m. – 1:00 p.m.</p>
+      <div class="cta-banner-text">
+        <h3>¿Listo para su revisión?</h3>
+        <p>Lunes a viernes 7:00 a.m. – 5:00 p.m. &nbsp;·&nbsp; Sábados 7:00 a.m. – 1:00 p.m.</p>
       </div>
       <div class="cta-banner-actions">
-        <button class="btn btn-danger" onclick="openModal('general')">Agendar cita</button>
+        <button class="btn btn-cta" onclick="openModal('general')">Agendar cita</button>
         <a class="btn btn-ghost"
            href="https://wa.me/573118006270?text=Hola%2C%20quiero%20información%20sobre%20los%20requisitos%20para%20la%20revisión"
-           target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+           target="_blank" rel="noopener">Consultar por WhatsApp</a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -396,60 +480,61 @@
 <section id="contacto">
   <div class="container">
     <div class="text-center reveal">
-      <div class="section-eyebrow">Hablemos</div>
-      <h2 class="section-title">Contáctanos</h2>
-      <p class="section-subtitle">Estamos disponibles para resolver tus dudas y agendar tu cita de la manera más fácil.</p>
+      <div class="section-eyebrow">Comuníquese con nosotros</div>
+      <h2 class="section-title">Contacto</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Estamos disponibles para resolver sus dudas y agendar su cita de forma rápida y sencilla.</p>
     </div>
 
     <div class="contact-grid">
-      <!-- Info -->
       <div class="reveal">
-        <div class="contact-info-item">
-          <div class="ci-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="ci-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Teléfono / WhatsApp</div>
+              <div class="ci-value"><a href="tel:+573118006270">+57 311 800 6270</a></div>
+            </div>
           </div>
-          <div>
-            <div class="ci-label">Teléfono / WhatsApp</div>
-            <div class="ci-value"><a href="tel:+573118006270">+57 311 800 6270</a></div>
+          <div class="contact-info-item">
+            <div class="ci-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Correo electrónico</div>
+              <div class="ci-value"><a href="mailto:cda.scootersacacias@gmail.com">cda.scootersacacias@gmail.com</a></div>
+            </div>
           </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="ci-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="contact-info-item">
+            <div class="ci-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Dirección</div>
+              <div class="ci-value">Acacías, Meta, Colombia</div>
+            </div>
           </div>
-          <div>
-            <div class="ci-label">Correo electrónico</div>
-            <div class="ci-value"><a href="mailto:cda.scootersacacias@gmail.com">cda.scootersacacias@gmail.com</a></div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="ci-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <div class="ci-label">Dirección</div>
-            <div class="ci-value">Acacías, Meta, Colombia</div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="ci-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div class="ci-label">Horario de atención</div>
-            <div class="ci-value">Lun – Vie: 7:00 a.m. – 5:00 p.m.<br>Sábados: 7:00 a.m. – 1:00 p.m.</div>
+          <div class="contact-info-item">
+            <div class="ci-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Horario de atención</div>
+              <div class="ci-value">Lun – Vie: 7:00 a.m. – 5:00 p.m.<br>Sábados: 7:00 a.m. – 1:00 p.m.</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Formulario -->
       <div class="contact-form-box reveal">
-        <h3>Envíanos un mensaje</h3>
-        <p>Completa el formulario y te responderemos a la brevedad.</p>
+        <h3>Envíenos un mensaje</h3>
+        <p>Complete el formulario y le responderemos a la brevedad posible.</p>
         <div class="form-row">
           <div class="form-group">
             <label for="fname">Nombre completo *</label>
-            <input type="text" id="fname" placeholder="Tu nombre" />
+            <input type="text" id="fname" placeholder="Su nombre" />
           </div>
           <div class="form-group">
             <label for="fphone">Teléfono / WhatsApp *</label>
@@ -463,7 +548,7 @@
         <div class="form-group">
           <label for="fvehicle">Tipo de vehículo</label>
           <select id="fvehicle">
-            <option value="" disabled selected>Selecciona...</option>
+            <option value="" disabled selected>Seleccione...</option>
             <option>Motocicleta</option>
             <option>Automóvil</option>
             <option>Motocarro</option>
@@ -471,7 +556,7 @@
         </div>
         <div class="form-group">
           <label for="fmsg">Mensaje</label>
-          <textarea id="fmsg" placeholder="¿En qué podemos ayudarte? Horario preferido, dudas sobre la revisión..."></textarea>
+          <textarea id="fmsg" placeholder="Horario preferido, dudas sobre la revisión..."></textarea>
         </div>
         <button class="btn btn-primary btn-block btn-lg" onclick="enviarMensaje()">
           Enviar mensaje
@@ -481,22 +566,19 @@
   </div>
 </section>
 
-<!-- ====================================================
-     MAPA
-==================================================== -->
+<!-- MAPA -->
 <div class="mapa-section">
   <div class="container">
     <div class="mapa-wrapper reveal">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63657.!2d-73.765640!3d3.991157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3e5a!2zQWNhY8OtYXMsIE1ldGE!5e0!3m2!1ses!2sco!4v1"
-        width="100%" height="380" style="border:0;"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
       <div class="mapa-card">
         <strong>CDA Scooters SAS</strong>
         <p>Acacías, Meta, Colombia</p>
         <a href="https://maps.google.com/?q=Acacias+Meta+Colombia" target="_blank" class="btn btn-primary btn-sm">
-          Cómo llegar →
+          Cómo llegar
         </a>
       </div>
     </div>
@@ -511,11 +593,10 @@
     <div class="text-center reveal">
       <div class="section-eyebrow">Marco legal</div>
       <h2 class="section-title">Términos y condiciones</h2>
+      <div class="section-divider"></div>
       <p class="section-subtitle">Condiciones de uso y prestación de servicios de CDA Scooters SAS</p>
     </div>
-
     <div class="legal-box reveal">
-
       <h3>1. Objeto del servicio</h3>
       <p>CDA Scooters SAS, como Centro de Diagnóstico Automotriz habilitado por el Ministerio de Transporte de la República de Colombia, presta el servicio de revisión técnico-mecánica y de emisiones contaminantes a vehículos automotores, conforme a lo establecido en la Ley 769 de 2002 y el Decreto 019 de 2012.</p>
 
@@ -529,7 +610,7 @@
       </ul>
 
       <h3>3. Tarifas y pagos</h3>
-      <p>Las tarifas de revisión son fijadas y reguladas por el Ministerio de Transporte. El pago se realiza antes de iniciar la inspección, mediante efectivo, tarjeta débito, crédito o transferencia bancaria. No se realizan devoluciones una vez iniciado el proceso de diagnóstico, salvo en casos de fuerza mayor debidamente justificados.</p>
+      <p>Las tarifas de revisión son fijadas y reguladas por el Ministerio de Transporte. El pago se realiza antes de iniciar la inspección mediante efectivo, tarjeta débito, crédito o transferencia bancaria. No se realizan devoluciones una vez iniciado el proceso de diagnóstico, salvo en casos de fuerza mayor debidamente justificados.</p>
 
       <h3>4. Política de citas</h3>
       <ul>
@@ -540,14 +621,13 @@
       </ul>
 
       <h3>5. Responsabilidad del CDA</h3>
-      <p>CDA Scooters SAS asume responsabilidad por los daños causados directamente al vehículo durante el proceso de revisión por negligencia comprobada de su personal. No se asumirá responsabilidad por daños preexistentes al vehículo, hurtos de objetos personales dejados en el interior del automotor, ni por consecuencias derivadas del uso de información incorrecta suministrada por el usuario.</p>
+      <p>CDA Scooters SAS asume responsabilidad por los daños causados directamente al vehículo durante el proceso de revisión por negligencia comprobada de su personal. No se asumirá responsabilidad por daños preexistentes al vehículo ni por objetos personales dejados en el interior del automotor.</p>
 
       <h3>6. Protección de datos personales</h3>
-      <p>De conformidad con la Ley 1581 de 2012 y el Decreto 1377 de 2013, CDA Scooters SAS recopila y trata los datos personales de sus usuarios exclusivamente para la prestación del servicio de revisión técnico-mecánica, la emisión de certificados oficiales y el cumplimiento de las obligaciones legales con las autoridades de transporte. Los datos no serán compartidos con terceros no autorizados.</p>
+      <p>De conformidad con la Ley 1581 de 2012 y el Decreto 1377 de 2013, CDA Scooters SAS recopila y trata los datos personales de sus usuarios exclusivamente para la prestación del servicio, la emisión de certificados oficiales y el cumplimiento de las obligaciones legales con las autoridades de transporte.</p>
 
       <h3>7. Vigencia y modificaciones</h3>
-      <p>Los presentes términos y condiciones tienen vigencia indefinida y pueden ser modificados por CDA Scooters SAS en cualquier momento. Las modificaciones serán notificadas a través de los canales oficiales de la empresa.</p>
-
+      <p>Los presentes términos y condiciones tienen vigencia indefinida y pueden ser modificados por CDA Scooters SAS en cualquier momento, notificando los cambios a través de los canales oficiales de la empresa.</p>
     </div>
   </div>
 </section>
@@ -560,44 +640,57 @@
     <div class="text-center reveal">
       <div class="section-eyebrow">Compromiso institucional</div>
       <h2 class="section-title">Política de seguridad vial</h2>
+      <div class="section-divider"></div>
       <p class="section-subtitle">Nuestro compromiso con la seguridad de todos los usuarios de las vías colombianas</p>
     </div>
 
     <div class="psv-intro reveal">
       <h3>Compromiso de CDA Scooters SAS</h3>
-      <p>Asumimos como principio fundamental la contribución a la seguridad vial de Colombia. Cada revisión técnico-mecánica que realizamos representa un aporte directo a la reducción de accidentes de tránsito causados por fallas mecánicas. Actuamos en cumplimiento del Plan Nacional de Seguridad Vial y de la Ley 1503 de 2011.</p>
+      <p>Asumimos como principio fundamental la contribución a la seguridad vial de Colombia. Cada revisión técnico-mecánica que realizamos representa un aporte directo a la reducción de accidentes causados por fallas mecánicas. Actuamos en cumplimiento del Plan Nacional de Seguridad Vial y la Ley 1503 de 2011.</p>
     </div>
 
     <div class="psv-grid">
       <div class="psv-card reveal">
-        <div class="psv-card-icon">🔍</div>
+        <div class="psv-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
         <h4>Diagnóstico riguroso</h4>
-        <p>Aplicamos protocolos de inspección estandarizados por el ICONTEC y el Ministerio de Transporte. Nuestros técnicos están certificados y en constante actualización para garantizar diagnósticos precisos y objetivos.</p>
+        <p>Aplicamos protocolos de inspección estandarizados por el ICONTEC y el Ministerio de Transporte. Técnicos certificados y en constante actualización para diagnósticos precisos.</p>
       </div>
       <div class="psv-card reveal">
-        <div class="psv-card-icon">🌱</div>
+        <div class="psv-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
         <h4>Control ambiental</h4>
-        <p>El control de emisiones contaminantes es parte integral de nuestra labor. Verificamos que los vehículos cumplan las normas de emisión vigentes (NTC 4983 y NTC 5365), contribuyendo a la calidad del aire en la región.</p>
+        <p>Verificamos que los vehículos cumplan las normas de emisión vigentes (NTC 4983 y NTC 5365), contribuyendo a la calidad del aire en la región del Meta.</p>
       </div>
       <div class="psv-card reveal">
-        <div class="psv-card-icon">📋</div>
+        <div class="psv-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
         <h4>Transparencia en resultados</h4>
-        <p>Emitimos informes detallados y objetivos. En caso de que un vehículo no apruebe la revisión, el propietario recibe una descripción clara de las fallas encontradas y las acciones correctivas necesarias.</p>
+        <p>Emitimos informes detallados y objetivos. Si un vehículo no aprueba, el propietario recibe descripción clara de las fallas y las acciones correctivas requeridas.</p>
       </div>
       <div class="psv-card reveal">
-        <div class="psv-card-icon">👥</div>
+        <div class="psv-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
         <h4>Capacitación continua</h4>
-        <p>Todo nuestro personal técnico es capacitado periódicamente en seguridad vial, primeros auxilios y manejo de situaciones de riesgo. Promovemos una cultura de seguridad vial dentro y fuera de la organización.</p>
+        <p>Personal técnico capacitado periódicamente en seguridad vial y primeros auxilios. Promovemos una cultura de seguridad vial dentro y fuera de la organización.</p>
       </div>
       <div class="psv-card reveal">
-        <div class="psv-card-icon">⚖️</div>
+        <div class="psv-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
         <h4>Cumplimiento normativo</h4>
-        <p>Operamos con total apego a la normativa colombiana de tránsito y transporte. Nos sometemos periódicamente a auditorías del organismo de control y mantenemos actualizados todos los equipos de diagnóstico según las exigencias del ONAC.</p>
+        <p>Operamos con total apego a la normativa colombiana de tránsito y transporte. Auditorías periódicas y equipos actualizados según las exigencias del ONAC.</p>
       </div>
       <div class="psv-card reveal">
-        <div class="psv-card-icon">🤝</div>
+        <div class="psv-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
         <h4>Cultura vial ciudadana</h4>
-        <p>Más allá de la revisión, promovemos entre nuestros usuarios hábitos de mantenimiento preventivo y conducción responsable. Un vehículo bien mantenido es la mejor garantía de seguridad para todos en la vía.</p>
+        <p>Promovemos hábitos de mantenimiento preventivo y conducción responsable. Un vehículo bien mantenido es la mejor garantía de seguridad para todos en la vía.</p>
       </div>
     </div>
   </div>
@@ -609,8 +702,6 @@
 <footer id="footer">
   <div class="container">
     <div class="footer-grid">
-
-      <!-- Marca -->
       <div>
         <a class="logo" href="#inicio">
           <div class="logo-icon">
@@ -628,43 +719,36 @@
         <p class="footer-brand-desc">Centro de Diagnóstico Automotriz habilitado por el Ministerio de Transporte. Comprometidos con la seguridad vial de Acacías y el Meta desde 2019.</p>
         <div class="social-links">
           <a class="social-link" href="https://wa.me/573118006270" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
           </a>
           <a class="social-link" href="mailto:cda.scootersacacias@gmail.com" aria-label="Correo">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- Navegación -->
       <div class="footer-col">
         <h4>Navegación</h4>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#asistir">¿Cómo asistir?</a></li>
+          <li><a href="#asistir">Cómo asistir</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#terminos">Términos y condiciones</a></li>
-          <li><a href="#seguridad-vial">Política de seguridad vial</a></li>
+          <li><a href="#seguridad-vial">Seguridad vial</a></li>
         </ul>
       </div>
 
-      <!-- Servicios -->
       <div class="footer-col">
         <h4>Servicios</h4>
         <ul>
-          <li><a href="#servicios">Revisión para motocicletas</a></li>
-          <li><a href="#servicios">Revisión para automóviles</a></li>
-          <li><a href="#servicios">Revisión para motocarros</a></li>
+          <li><a href="#servicios">Revisión motocicletas</a></li>
+          <li><a href="#servicios">Revisión automóviles</a></li>
+          <li><a href="#servicios">Revisión motocarros</a></li>
           <li><a href="#asistir">Requisitos</a></li>
         </ul>
       </div>
 
-      <!-- Contacto -->
       <div class="footer-col">
         <h4>Contacto</h4>
         <div class="footer-contact-detail">
@@ -684,7 +768,6 @@
           <span>Lun–Vie 7AM–5PM · Sáb 7AM–1PM</span>
         </div>
       </div>
-
     </div>
 
     <div class="footer-bottom">
@@ -707,21 +790,21 @@
         <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     </button>
-
-    <p class="modal-title" id="modal-title">Agendar cita — CDA Scooters SAS</p>
-    <p class="modal-sub">Completa el formulario y nos pondremos en contacto para confirmar tu cita.</p>
+    <div class="modal-header">
+      <p class="modal-title" id="modal-title">Agendar cita</p>
+      <p class="modal-sub">Complete el formulario y nos comunicaremos para confirmar su cita.</p>
+    </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="m-nombre">Nombre completo *</label>
-        <input type="text" id="m-nombre" placeholder="Tu nombre" />
+        <input type="text" id="m-nombre" placeholder="Su nombre" />
       </div>
       <div class="form-group">
         <label for="m-tel">Teléfono / WhatsApp *</label>
         <input type="tel" id="m-tel" placeholder="311 800 6270" />
       </div>
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label for="m-placa">Placa del vehículo *</label>
@@ -730,14 +813,13 @@
       <div class="form-group">
         <label for="m-tipo">Tipo de vehículo *</label>
         <select id="m-tipo">
-          <option value="">Selecciona...</option>
+          <option value="">Seleccione...</option>
           <option value="moto">Motocicleta</option>
           <option value="automovil">Automóvil</option>
           <option value="motocarro">Motocarro</option>
         </select>
       </div>
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label for="m-fecha">Fecha preferida *</label>
@@ -746,31 +828,25 @@
       <div class="form-group">
         <label for="m-hora">Hora preferida *</label>
         <select id="m-hora">
-          <option value="">Selecciona...</option>
-          <option>7:00 a.m.</option>
-          <option>8:00 a.m.</option>
-          <option>9:00 a.m.</option>
-          <option>10:00 a.m.</option>
-          <option>11:00 a.m.</option>
-          <option>12:00 p.m.</option>
-          <option>1:00 p.m.</option>
-          <option>2:00 p.m.</option>
-          <option>3:00 p.m.</option>
-          <option>4:00 p.m.</option>
+          <option value="">Seleccione...</option>
+          <option>7:00 a.m.</option><option>8:00 a.m.</option>
+          <option>9:00 a.m.</option><option>10:00 a.m.</option>
+          <option>11:00 a.m.</option><option>12:00 p.m.</option>
+          <option>1:00 p.m.</option><option>2:00 p.m.</option>
+          <option>3:00 p.m.</option><option>4:00 p.m.</option>
         </select>
       </div>
     </div>
-
     <div class="form-group">
       <label for="m-nota">Observaciones (opcional)</label>
-      <textarea id="m-nota" placeholder="Ej: El vehículo tiene falla en los frenos..."></textarea>
+      <textarea id="m-nota" placeholder="Información adicional sobre su vehículo..."></textarea>
     </div>
 
-    <button class="btn btn-danger btn-block btn-lg" onclick="submitModal()" style="margin-top:6px;">
-      Confirmar solicitud de cita
+    <button class="btn btn-cta btn-block btn-lg" onclick="submitModal()" style="margin-top:4px;">
+      Confirmar solicitud
     </button>
-    <p style="font-size:.75rem;color:var(--gris-medio);text-align:center;margin-top:10px;">
-      También puedes llamarnos al <strong>+57 311 800 6270</strong>
+    <p style="font-size:.75rem;color:var(--text-muted);text-align:center;margin-top:10px;">
+      También puede llamarnos al <strong>+57 311 800 6270</strong>
     </p>
   </div>
 </div>
