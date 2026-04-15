@@ -453,11 +453,13 @@ async function sendMessage() {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 
   try {
-    const res  = await fetch("http://localhost:3000/chat", {
-      method:  "POST",
-      headers: { "Content-Type": "application/json" },
-      body:    JSON.stringify({ message: texto })
-    });
+    const res  = await fetch("https://cda-scooters.onrender.com/chat", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: userMessage })
+})
     const data = await res.json();
     document.getElementById("typing-dots")?.remove();
     messagesEl.innerHTML += `<div class="message bot">${data.reply}</div>`;
