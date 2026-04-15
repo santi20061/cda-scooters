@@ -392,18 +392,32 @@ async function enviarMensaje() {
   }
 
   try {
-    const res  = await fetch("http://localhost:3000/contacto", {
-      method:  "POST",
-      headers: { "Content-Type": "application/json" },
-      body:    JSON.stringify({ nombre, correo, telefono, vehiculo, mensaje })
-    });
-    const data = await res.json();
-    alert(data.mensaje || "¡Mensaje enviado! Te contactaremos pronto.");
-  } catch {
-    alert("Error al conectar con el servidor. Puedes contactarnos directamente al +57 311 800 6270.");
+    await window.addDoc(
+      window.collection(window.db, "contactos"),
+      {
+        nombre,
+        correo,
+        telefono,
+        vehiculo,
+        mensaje,
+        fecha: new Date()
+      }
+    );
+
+    alert("¡Mensaje enviado correctamente! ✅");
+
+    // Limpiar formulario
+    document.getElementById("fname").value = "";
+    document.getElementById("femail").value = "";
+    document.getElementById("fphone").value = "";
+    document.getElementById("fvehicle").value = "";
+    document.getElementById("fmsg").value = "";
+
+  } catch (error) {
+    console.error(error);
+    alert("Error al guardar en Firebase ❌");
   }
 }
-
 
 // =============================================================
 //  ABRIR WHATSAPP CON MENSAJE PREDEFINIDO

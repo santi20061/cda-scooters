@@ -850,7 +850,27 @@
     </p>
   </div>
 </div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+  import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyBpfrhVIqVC9AhumfV9_xUl1aUvJOIPbRo",
+    authDomain: "cda-scooters.firebaseapp.com",
+    projectId: "cda-scooters",
+    storageBucket: "cda-scooters.firebasestorage.app",
+    messagingSenderId: "44146740457",
+    appId: "1:44146740457:web:450ae27b97eca14d83f478"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Hacemos global para usarlo en script.js
+  window.db = db;
+  window.addDoc = addDoc;
+  window.collection = collection;
+</script>
 <script src="script.js"></script>
 </body>
 </html>
