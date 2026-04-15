@@ -1,10 +1,3 @@
-/**
- * ============================================================
- *  CDA Scooters SAS — script.js
- *  Patrones aplicados: COMPOSITE + DECORATOR (Estructurales)
- * ============================================================
- */
-
 "use strict";
 
 // =============================================================
@@ -452,26 +445,32 @@ async function sendMessage() {
   messagesEl.appendChild(dots);
   messagesEl.scrollTop = messagesEl.scrollHeight;
 
-  try {
-    const res  = await fetch("https://cda-scooters.onrender.com/chat", {
+try {
+  const res = await fetch("https://cda-scooters.onrender.com/chat", {
     method: "POST",
     headers: {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ message: userMessage })
-})
-    const data = await res.json();
-    document.getElementById("typing-dots")?.remove();
-    messagesEl.innerHTML += `<div class="message bot">${data.reply}</div>`;
-  } catch {
-    document.getElementById("typing-dots")?.remove();
-    messagesEl.innerHTML += `
-      <div class="message bot">
-        No puedo responder ahora. Escríbenos al
-        <a href="https://wa.me/573118006270" target="_blank">WhatsApp</a>.
-      </div>`;
-  }
-  messagesEl.scrollTop = messagesEl.scrollHeight;
+    body: JSON.stringify({ message: texto })
+  });
+
+  const data = await res.json();
+
+  document.getElementById("typing-dots")?.remove();
+
+  messagesEl.innerHTML += `<div class="message bot">${data.reply}</div>`;
+
+} catch {
+  document.getElementById("typing-dots")?.remove();
+
+  messagesEl.innerHTML += `
+    <div class="message bot">
+      No puedo responder ahora. Escríbenos al
+      <a href="https://wa.me/573118006270" target="_blank">WhatsApp</a>.
+    </div>`;
+}
+
+messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
 
