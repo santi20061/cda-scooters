@@ -184,8 +184,6 @@ class CDAFacade {
   }
 
   /**
-   * Punto de entrada unificado para el formulario de contacto.
-   * Internamente valida y guarda en el repositorio.
    *
    * @param {object} datos - Datos del formulario
    * @returns {{ ok: boolean, mensaje: string }}
@@ -212,12 +210,6 @@ class CDAFacade {
 //  Se crea UNA sola instancia del facade (Singleton implícito)
 // ─────────────────────────────────────────────────────────────
 const cdaFacade = new CDAFacade();
-
-// ─────────────────────────────────────────────────────────────
-//  RUTAS EXPRESS
-//  Observa lo simple que son: solo llaman al facade.
-//  No contienen lógica de negocio.
-// ─────────────────────────────────────────────────────────────
 
 /** Ruta del chatbot — delega todo al facade */
 app.post("/chat", async (req, res) => {
