@@ -85,12 +85,9 @@
   <div class="header-main">
     <div class="container">
       <a class="logo" href="#inicio">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0A2463" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="7" cy="17" r="2.5"/>
-            <circle cx="17" cy="17" r="2.5"/>
-            <path d="M7 17H4V7l5-2 3 4h5l2 4H7"/>
-          </svg>
+        <!-- Reemplazar con: <img src="logo.png" alt="CDA Scooters" style="height:44px;"> -->
+        <div class="logo-img-placeholder">
+          <span>Logo<br>CDA</span>
         </div>
         <div>
           <div class="logo-name">CDA Scooters Asociados SAS</div>
@@ -301,101 +298,159 @@
       <div class="label-seccion">Lo que hacemos</div>
       <h2 class="titulo-seccion">Nuestros servicios</h2>
       <div class="divisor"></div>
-      <p class="subtitulo-seccion">Revisiones técnico-mecánicas y de emisiones contaminantes reglamentadas por el Ministerio de Transporte de Colombia.</p>
+      <p class="subtitulo-seccion">
+        Realizamos la revisión técnico-mecánica y de emisiones contaminantes en un solo proceso integral, conforme a la normatividad del Ministerio de Transporte de Colombia.
+      </p>
     </div>
 
-    <div class="servicios-grid">
+    <div class="servicios-con-imagen">
+      <!-- Tarjetas de servicio por tipo de vehículo -->
+      <div class="servicios-lista">
 
-      <!-- Revisión técnico-mecánica -->
-      <article class="servicio-card reveal">
-        <div class="servicio-top-bar"></div>
-        <div class="servicio-body">
-          <div class="servicio-icono">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/>
-              <path d="M7 17H4V7l5-2 3 4h5l2 4H7"/>
-            </svg>
-          </div>
-          <div>
-            <div class="servicio-nombre">Revisión técnico-mecánica</div>
-            <p class="servicio-desc">Inspección integral de frenos, luces, llantas, carrocería, dirección y todos los sistemas de seguridad del vehículo, conforme a la normatividad vigente.</p>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:.85rem; color:var(--gris-texto);">
-            <div style="display:flex; align-items:flex-start; gap:8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-              Revisión de frenos delantero y trasero
+        <!-- Revisión para motocicletas -->
+        <article class="servicio-card reveal">
+          <div class="servicio-top-bar"></div>
+          <div class="servicio-body">
+            <div style="display:flex; align-items:flex-start; gap:20px;">
+              <div class="servicio-icono" style="flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/>
+                  <path d="M7 17H4V7l5-2 3 4h5l2 4H7"/>
+                </svg>
+              </div>
+              <div style="flex:1;">
+                <div class="servicio-nombre">Revisión para motocicletas</div>
+                <p class="servicio-desc" style="margin-top:6px;">
+                  Inspección técnico-mecánica y de emisiones contaminantes en un solo proceso para su motocicleta. Incluye revisión de frenos, luces, llantas, carrocería y prueba de gases, conforme a la normatividad vigente.
+                </p>
+              </div>
             </div>
-            <div style="display:flex; align-items:flex-start; gap:8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-              Luces, pito y espejos retrovisores
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:.85rem; color:var(--gris-texto); margin-top:4px;">
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Frenos delantero y trasero
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Luces, pito y espejos
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Llantas y suspensión
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Emisiones contaminantes
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Carrocería e inspección visual
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Certificado oficial inmediato
+              </div>
             </div>
-            <div style="display:flex; align-items:flex-start; gap:8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-              Llantas, suspensión y carrocería
+
+            <div class="servicio-precio">
+              <span class="precio-etiqueta">Motocicleta</span>
+              <span class="precio-valor">$218.000</span>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:4px; flex-wrap:wrap;">
+              <button class="btn btn-azul"
+                onclick="openWhatsApp('Hola, quiero agendar una revisión técnico-mecánica para mi motocicleta')">
+                Agendar cita
+              </button>
+              <button class="btn btn-outline-azul"
+                onclick="openModal('moto')">
+                Solicitar información
+              </button>
             </div>
           </div>
-          <div class="servicio-precio">
-            <span class="precio-etiqueta">Motocicleta&nbsp;·&nbsp;desde</span>
-            <span class="precio-valor">$218.000</span>
+        </article>
+
+        <!-- Revisión para vehículos livianos -->
+        <article class="servicio-card reveal">
+          <div class="servicio-top-bar"></div>
+          <div class="servicio-body">
+            <div style="display:flex; align-items:flex-start; gap:20px;">
+              <div class="servicio-icono" style="flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M5 17H3v-5l2-5h14l2 5v5h-2"/>
+                  <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+                </svg>
+              </div>
+              <div style="flex:1;">
+                <div class="servicio-nombre">Revisión para vehículos livianos</div>
+                <p class="servicio-desc" style="margin-top:6px;">
+                  Inspección técnico-mecánica y de emisiones contaminantes para vehículos livianos, incluyendo motocarros. Proceso integral que verifica todos los sistemas de seguridad y niveles de emisión conforme a la normativa colombiana.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:.85rem; color:var(--gris-texto); margin-top:4px;">
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Frenos y sistema de dirección
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Sistema eléctrico y luces
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Llantas y suspensión
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Emisiones contaminantes
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Carrocería y estructura
+              </div>
+              <div style="display:flex; align-items:flex-start; gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
+                Certificado oficial inmediato
+              </div>
+            </div>
+
+            <div class="servicio-precio">
+              <span class="precio-etiqueta">Liviano (incluye motocarro)</span>
+              <span class="precio-valor">$318.000</span>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:4px; flex-wrap:wrap;">
+              <button class="btn btn-azul"
+                onclick="openWhatsApp('Hola, quiero agendar una revisión técnico-mecánica para un vehículo liviano')">
+                Agendar cita
+              </button>
+              <button class="btn btn-outline-azul"
+                onclick="openModal('automovil')">
+                Solicitar información
+              </button>
+            </div>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
-            <button class="btn btn-azul btn-block"
-              onclick="openWhatsApp('Hola, quiero agendar una revisión técnico-mecánica para mi motocicleta')">
-              Agendar cita
-            </button>
-            <button class="btn btn-outline-azul btn-block btn-sm"
-              onclick="openModal('moto')">
-              Solicitar información
-            </button>
+        </article>
+
+      </div>
+
+      <!-- Imagen lateral decorativa -->
+      <div class="servicios-imagen">
+        <div class="seccion-img" style="min-height:440px;">
+          <!-- Reemplazar con: <img src="servicio.jpg" alt="Revisión técnico-mecánica CDA"> -->
+          <div class="seccion-img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Foto de revisión<br>en proceso</span>
           </div>
         </div>
-      </article>
-
-      <!-- Emisiones contaminantes -->
-      <article class="servicio-card reveal">
-        <div class="servicio-top-bar"></div>
-        <div class="servicio-body">
-          <div class="servicio-icono">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/>
-              <path d="M8 12s1.5 2 4 2 4-2 4-2"/>
-              <line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
-            </svg>
-          </div>
-          <div>
-            <div class="servicio-nombre">Medición de emisiones contaminantes</div>
-            <p class="servicio-desc">Prueba de gases para verificar que su vehículo cumple los límites de emisión establecidos por las normas técnicas colombianas NTC 4983 y NTC 5365.</p>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:.85rem; color:var(--gris-texto);">
-            <div style="display:flex; align-items:flex-start; gap:8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-              Análisis de gases de escape
-            </div>
-            <div style="display:flex; align-items:flex-start; gap:8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-              Verificación de opacidad en humos
-            </div>
-            <div style="display:flex; align-items:flex-start; gap:8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--azul-mid)" stroke-width="2.5" style="flex-shrink:0; margin-top:2px;"><polyline points="20 6 9 17 4 12"/></svg>
-              Cumplimiento de normas NTC vigentes
-            </div>
-          </div>
-          <div class="servicio-precio">
-            <span class="precio-etiqueta">Liviano / motocarro&nbsp;·&nbsp;desde</span>
-            <span class="precio-valor">$318.000</span>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
-            <button class="btn btn-azul btn-block"
-              onclick="openWhatsApp('Hola, quiero agendar una revisión de emisiones contaminantes')">
-              Agendar cita
-            </button>
-            <button class="btn btn-outline-azul btn-block btn-sm"
-              onclick="openModal('automovil')">
-              Solicitar información
-            </button>
-          </div>
+        <div style="background:var(--azul); border-radius:var(--radio-lg); padding:20px 22px; margin-top:14px;">
+          <p style="font-size:.82rem; color:rgba(255,255,255,.7); line-height:1.7;">
+            <strong style="color:var(--amarillo); display:block; margin-bottom:6px;">Proceso integral en un solo paso</strong>
+            La revisión técnico-mecánica y la prueba de emisiones contaminantes se realizan en el mismo proceso. No necesita visitar lugares diferentes.
+          </p>
         </div>
-      </article>
+      </div>
 
     </div>
   </div>
