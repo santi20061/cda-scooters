@@ -759,9 +759,6 @@ button { font-family: var(--font-ui); }
   align-items: start;
 }
 .servicios-lista { display: flex; flex-direction: column; gap: 24px; }
-.servicios-imagen { position: sticky; top: 120px; }
-.servicios-imagen .seccion-img { min-height: 400px; }
-
 /* ── PROCESO CON IMAGEN ────────────────────── */
 .proceso-con-imagen {
   display: grid;
