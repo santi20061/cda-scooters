@@ -551,6 +551,81 @@ function _inicializarVista(nombre) {
 }
 
 function _asegurarVistaCompleta(nombre) {
+  if (nombre === "nosotros") {
+    // Inyectar todas las 6 tarjetas de certificación SIEMPRE
+    // para garantizar que nunca se vean vacías
+    const certsGrid = document.querySelector("#nosotros .nosotros-certs-grid");
+    
+    if (certsGrid) {
+      // Reemplazar contenido del grid con las 6 tarjetas completas
+      certsGrid.innerHTML = `
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="cert-title">ONAC 17-OIN-054</div>
+          <p class="cert-desc">Acreditación oficial del Organismo Nacional de Acreditación de Colombia</p>
+        </div>
+        
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div class="cert-title">Clase D</div>
+          <p class="cert-desc">Habilitados para revisar motocicletas, motocarros y vehículos livianos</p>
+        </div>
+        
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div class="cert-title">Decreto 948/1995</div>
+          <p class="cert-desc">Cumplimiento normativo en medición de emisiones contaminantes</p>
+        </div>
+        
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="cert-title">Registro RUNT</div>
+          <p class="cert-desc">Todos los resultados se registran en la base de datos nacional de tránsito</p>
+        </div>
+        
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="cert-title">Horario continuo</div>
+          <p class="cert-desc">Atención lunes a viernes 7am–6pm, sábados 7am–4pm, festivos 8am–12m</p>
+        </div>
+        
+        <div class="cert-card">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="cert-title">Ubicación central</div>
+          <p class="cert-desc">Cra. 21 #15-24, Barrio Cooperativo, Acacías, Meta</p>
+        </div>
+      `;
+    }
+    return;
+  }
+
   if (nombre === "servicios") {
     const layout = document.querySelector("#servicios .servicios-layout");
     if (!layout || document.querySelector("#servicios .servicios-video-card")) return;
