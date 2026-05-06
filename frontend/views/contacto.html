@@ -1,0 +1,277 @@
+<!-- ── VISTA: CONTACTO ───────────────────────────────────────────────────── -->
+
+<section id="contacto" style="padding:88px 0 64px; background:var(--bg);">
+  <div class="container">
+
+    <div class="text-center reveal">
+      <div class="label-seccion">Contáctenos</div>
+      <h2 class="titulo-seccion">Estamos para atenderle</h2>
+      <div class="divisor"></div>
+      <p class="subtitulo-seccion">
+        Resolvemos sus dudas y agendamos su cita de manera rápida y sencilla.
+      </p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div class="contact-info-list">
+
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Teléfono / WhatsApp</div>
+            <div class="ci-value"><a href="tel:+573118006270">+57 311 800 6270</a></div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Correo electrónico</div>
+            <div class="ci-value"><a href="mailto:cda.scootersacacias@gmail.com">cda.scootersacacias@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Dirección</div>
+            <div class="ci-value">Cra. 21 #15-24, Barrio Cooperativo<br>Acacías, Meta, Colombia</div>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Horario de atención</div>
+            <div class="ci-value">
+              Lun–Vie 7:00 a.m. – 6:00 p.m.<br>
+              Sáb 7:00 a.m. – 4:00 p.m.<br>
+              Fest 8:00 a.m. – 12:00 m.
+            </div>
+          </div>
+        </div>
+
+        <div style="padding-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+          <button class="btn btn-amarillo" onclick="openModal('general')">Agendar cita</button>
+          <a class="btn btn-outline-azul"
+             href="https://wa.me/573118006270?text=Hola%2C%20quiero%20información%20sobre%20la%20revisión%20técnico-mecánica"
+             target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="contact-form-box">
+        <h3>Envíenos un mensaje</h3>
+        <p>Nuestro equipo responderá en menos de 24 horas hábiles.</p>
+
+        <form onsubmit="event.preventDefault(); enviarMensaje();" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Nombre completo *</label>
+              <input type="text" id="fname" placeholder="Su nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label for="femail">Correo electrónico *</label>
+              <input type="email" id="femail" placeholder="correo@ejemplo.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fphone">Teléfono</label>
+              <input type="tel" id="fphone" placeholder="311 800 6270" />
+            </div>
+            <div class="form-group">
+              <label for="fvehicle">Tipo de vehículo</label>
+              <select id="fvehicle">
+                <option value="">Seleccione...</option>
+                <option value="moto">Motocicleta</option>
+                <option value="automovil">Liviano / Motocarro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Mensaje</label>
+            <textarea id="fmsg" placeholder="Escriba su consulta o comentario..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-azul btn-block btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="ubicacion-grid reveal" style="margin-top:48px;">
+      <div class="contact-info-list">
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Ubicación exacta</div>
+            <div class="ci-value">Cra. 21 #15-24, Barrio Cooperativo<br>Acacías, Meta, Colombia</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Teléfono</div>
+            <div class="ci-value"><a href="tel:+573118006270">+57 311 800 6270</a></div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ci-label">Horario</div>
+            <div class="ci-value">
+              Lun–Vie 7AM–6PM<br>
+              Sáb 7AM–4PM<br>
+              Fest 8AM–12M
+            </div>
+          </div>
+        </div>
+        <div style="padding-top:20px;">
+          <a class="btn btn-amarillo btn-block"
+             href="https://www.google.com/maps/search/?api=1&query=3.988342985633988,-73.76894482430293"
+             target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Abrir en Google Maps
+          </a>
+        </div>
+      </div>
+
+      <div class="mapa-wrapper">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-73.77394482430293%2C3.983342985633988%2C-73.76394482430293%2C3.993342985633988&amp;layer=mapnik&amp;marker=3.988342985633988%2C-73.76894482430293"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Ubicación CDA Scooters — Acacías, Meta">
+        </iframe>
+        <div style="text-align:right; padding:4px 0;">
+          <a href="https://www.google.com/maps/search/?api=1&query=3.988342985633988,-73.76894482430293"
+             target="_blank" rel="noopener"
+             style="font-size:.72rem; color:var(--gris-medio);">
+            Ver en Google Maps ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="horarios-tab-wrap reveal" style="margin-top:48px;">
+      <div class="horarios-table-card">
+        <h2 class="horarios-tab-titulo">Horarios de atención</h2>
+        <table class="horarios-table">
+          <thead>
+            <tr>
+              <th>Día</th>
+              <th>Apertura</th>
+              <th>Cierre</th>
+              <th>Duración revisión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tr-highlight">
+              <td><strong>Lunes a viernes</strong></td>
+              <td>7:00 a.m.</td>
+              <td>6:00 p.m.</td>
+              <td>45–60 min</td>
+            </tr>
+            <tr>
+              <td><strong>Sábados</strong></td>
+              <td>7:00 a.m.</td>
+              <td>4:00 p.m.</td>
+              <td>45–60 min</td>
+            </tr>
+            <tr>
+              <td><strong>Festivos</strong></td>
+              <td>8:00 a.m.</td>
+              <td>12:00 m.</td>
+              <td>45–60 min</td>
+            </tr>
+            <tr>
+              <td><strong>Domingos</strong></td>
+              <td colspan="3" style="color:var(--gris-medio);">Cerrado</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="horarios-nota">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          Se recomienda llegar <strong>15 minutos antes</strong> de su turno con todos los
+          documentos listos. La última revisión se admite 45 minutos antes del cierre.
+        </div>
+      </div>
+
+      <div class="horarios-cta">
+        <div class="label-seccion">Agenda tu cita</div>
+        <h3>¿Listo para su revisión?</h3>
+        <p>
+          Reserva con anticipación y evita las filas. Le atendemos con puntualidad
+          y garantizamos un proceso ágil y sin contratiempos.
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          <button class="btn btn-amarillo" onclick="openModal('general')">Agendar cita</button>
+          <a class="btn btn-outline-azul"
+             href="https://wa.me/573118006270?text=Hola%2C%20quiero%20agendar%20una%20cita%20para%20revisión%20técnico-mecánica"
+             target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+
+        <div style="margin-top:28px; padding-top:20px; border-top:1px solid rgba(255,255,255,.15);">
+          <p style="font-size:.8rem; color:rgba(255,255,255,.5); margin-bottom:10px;">
+            También puede llamarnos directamente:
+          </p>
+          <a href="tel:+573118006270"
+             style="font-size:1.1rem; font-weight:700; color:var(--amarillo); display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            +57 311 800 6270
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

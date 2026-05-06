@@ -1,0 +1,115 @@
+#seguridad-vial {
+  padding: 88px 0;
+  background: var(--bg);
+}
+
+.psv-intro {
+  background: var(--azul);
+  border-radius: var(--radio-lg);
+  padding: 36px 44px;
+  color: var(--blanco);
+  margin-bottom: 28px;
+  border-left: 5px solid var(--amarillo);
+  box-shadow: var(--sombra-md);
+}
+
+.psv-intro h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.psv-intro p {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .62);
+  line-height: 1.78;
+  max-width: 680px;
+}
+
+.psv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.psv-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-lg);
+  padding: 26px;
+  border-top: 3px solid var(--amarillo);
+  box-shadow: var(--sombra-xs);
+  transition: box-shadow var(--trans), transform var(--trans);
+}
+
+.psv-card:hover {
+  box-shadow: var(--sombra-sm);
+  transform: translateY(-3px);
+}
+
+.psv-card-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--azul-xlight);
+  border-radius: var(--radio-sm);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.psv-card-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--azul-mid);
+}
+
+.psv-card h4 {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+
+.psv-card p {
+  font-size: .83rem;
+  color: var(--gris-medio);
+  line-height: 1.7;
+}
+
+#seguridad-vial .accordion {
+  max-width: 860px;
+}
+
+#seguridad-vial .titulo-seccion {
+  color: var(--azul);
+}
+
+.seguridad-vial-detalle {
+  margin-top: 52px;
+}
+
+.seguridad-vial-heading {
+  margin-bottom: 28px;
+}
+
+@media (max-width: 980px) {
+  .psv-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  #seguridad-vial {
+    padding: 72px 0;
+  }
+
+  .psv-intro {
+    padding: 28px 20px;
+  }
+
+  .psv-grid {
+    grid-template-columns: 1fr;
+  }
+}

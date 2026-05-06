@@ -1,0 +1,357 @@
+#contacto {
+  padding: 88px 0 64px;
+  background: var(--bg);
+}
+
+.contacto-tab-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+#contacto .tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: .86rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all var(--trans);
+  font-family: var(--font-ui);
+  background: var(--azul-light);
+  color: var(--azul);
+}
+
+#contacto .tab-btn:hover,
+#contacto .tab-btn.active {
+  background: var(--azul);
+  color: var(--blanco);
+}
+
+#contacto .tab-panel {
+  display: none;
+}
+
+#contacto .tab-panel.active {
+  display: block;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  gap: 52px;
+  align-items: start;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.contact-info-item:last-child {
+  border-bottom: none;
+}
+
+.ci-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radio-sm);
+  background: var(--azul-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ci-icon-box svg {
+  width: 18px;
+  height: 18px;
+  color: var(--azul-mid);
+}
+
+.ci-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gris-medio);
+  margin-bottom: 4px;
+}
+
+.ci-value {
+  font-size: .92rem;
+  color: var(--negro);
+  font-weight: 500;
+}
+
+.ci-value a {
+  color: var(--azul-mid);
+}
+
+.ci-value a:hover {
+  text-decoration: underline;
+}
+
+.contact-form-box {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-lg);
+  padding: 36px;
+  box-shadow: var(--sombra-xs);
+}
+
+.contact-form-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 5px;
+}
+
+.contact-form-box > p {
+  font-size: .86rem;
+  color: var(--gris-medio);
+  margin-bottom: 26px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--negro);
+  margin-bottom: 6px;
+  letter-spacing: .01em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  font-size: .9rem;
+  font-family: var(--font-ui);
+  color: var(--negro);
+  background: var(--blanco);
+  transition: border-color var(--trans), box-shadow var(--trans);
+  outline: none;
+  line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--azul-mid);
+  box-shadow: 0 0 0 3px rgba(26, 58, 143, .1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #BBBBBB;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ubicacion-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 320px) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.ubicacion-grid .mapa-wrapper {
+  border-radius: var(--radio-lg);
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  box-shadow: var(--sombra-sm);
+  background: var(--blanco);
+}
+
+.ubicacion-grid .mapa-wrapper iframe {
+  display: block;
+  width: 100%;
+  min-height: 450px;
+}
+
+.horarios-tab-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 40px;
+  align-items: start;
+}
+
+.horarios-table-card {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-lg);
+  padding: 36px;
+  box-shadow: var(--sombra-xs);
+}
+
+.horarios-tab-titulo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--azul);
+  margin-bottom: 22px;
+}
+
+.horarios-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+}
+
+.horarios-table th {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.horarios-table th:first-child {
+  border-radius: var(--radio-sm) 0 0 0;
+}
+
+.horarios-table th:last-child {
+  border-radius: 0 var(--radio-sm) 0 0;
+}
+
+.horarios-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--borde);
+  color: var(--gris-texto);
+}
+
+.horarios-table tbody tr:hover td {
+  background: var(--azul-xlight);
+}
+
+.tr-highlight td {
+  background: var(--azul-xlight);
+  font-weight: 600;
+  color: var(--azul);
+}
+
+.horarios-nota {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: .78rem;
+  color: var(--gris-medio);
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: var(--azul-xlight);
+  border-radius: var(--radio-sm);
+  line-height: 1.5;
+}
+
+.horarios-nota svg {
+  flex-shrink: 0;
+  color: var(--azul-mid);
+  margin-top: 1px;
+}
+
+.horarios-cta {
+  background: var(--azul);
+  border-radius: var(--radio-lg);
+  padding: 30px 26px;
+  color: var(--blanco);
+  border-left: 4px solid var(--amarillo);
+}
+
+.horarios-cta .label-seccion,
+.horarios-cta .label-seccion::before {
+  color: var(--amarillo);
+}
+
+.horarios-cta h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--blanco);
+  margin-bottom: 8px;
+}
+
+.horarios-cta p {
+  font-size: .84rem;
+  color: rgba(255, 255, 255, .55);
+  line-height: 1.65;
+}
+
+.horarios-cta .btn-outline-azul {
+  border-color: rgba(255, 255, 255, .35);
+  color: rgba(255, 255, 255, .8);
+  background: transparent;
+}
+
+.horarios-cta .btn-outline-azul:hover {
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .6);
+}
+
+@media (max-width: 980px) {
+  .contact-grid,
+  .ubicacion-grid,
+  .horarios-tab-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-box {
+    order: 2;
+  }
+
+  .contact-info-list {
+    order: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  #contacto {
+    padding: 72px 0 56px;
+  }
+
+  .contact-form-box,
+  .horarios-table-card {
+    padding: 24px 18px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .horarios-table td,
+  .horarios-table th {
+    padding: 9px 10px;
+    font-size: .8rem;
+  }
+}

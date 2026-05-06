@@ -1,0 +1,69 @@
+#terminos {
+  padding: 88px 0;
+  background: var(--blanco);
+}
+
+.terminos-cta-wrap {
+  margin-top: 36px;
+  text-align: center;
+}
+
+#terminos .titulo-seccion {
+  color: var(--azul);
+}
+
+.legal-box {
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-lg);
+  padding: 44px 52px;
+  box-shadow: var(--sombra-xs);
+}
+
+.legal-box h3 {
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--azul);
+  margin: 30px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--borde);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.legal-box h3:first-child {
+  margin-top: 0;
+}
+
+.legal-box p,
+.legal-box li {
+  font-size: .9rem;
+  color: var(--gris-texto);
+  line-height: 1.8;
+}
+
+.legal-box ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.legal-box ul li {
+  margin-bottom: 5px;
+}
+
+.legal-box p {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 640px) {
+  #terminos {
+    padding: 72px 0;
+  }
+
+  .legal-box {
+    padding: 26px 18px;
+  }
+}
