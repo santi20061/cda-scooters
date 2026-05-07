@@ -451,6 +451,9 @@ class ViewRouter {
       if (!res.ok) throw new Error(`Vista no encontrada: ${nombre}`);
       const html = await res.text();
 
+      // Cargar CSS específico de la vista (esperar carga antes de mostrar)
+      await this._cargarCSS(nombre);
+
       // Inyectar
       container.innerHTML = html;
       this._current = nombre;
@@ -489,6 +492,27 @@ class ViewRouter {
           <button class="btn btn-azul" style="margin-top:20px;" onclick="showPanel('inicio')">Volver al inicio</button>
         </div>`;
     }
+  }
+
+  /** Carga dinámicamente el CSS de la vista y elimina el anterior */
+  _cargarCSS(nombre) {
+    // Eliminar CSS de vista anterior
+    const prev = document.getElementById("view-css-dinamico");
+    if (prev) prev.remove();
+
+    // Lista de vistas que tienen CSS propio
+    const vistasConCSS = ["inicio","nosotros","servicios","proceso","contacto","terminos","seguridad-vial"];
+    if (!vistasConCSS.includes(nombre)) return Promise.resolve();
+
+    return new Promise((resolve) => {
+      const link = document.createElement("link");
+      link.rel   = "stylesheet";
+      link.href  = `css/${nombre}.css`;
+      link.id    = "view-css-dinamico";
+      link.onload  = resolve;
+      link.onerror = resolve; // continuar aunque falle
+      document.head.appendChild(link);
+    });
   }
 }
 
