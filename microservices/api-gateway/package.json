@@ -1,0 +1,20 @@
+{
+  "name": "cda-api-gateway",
+  "version": "1.0.0",
+  "description": "API Gateway para microservicios CDA",
+  "main": "gateway.js",
+  "scripts": {
+    "start": "node gateway.js",
+    "dev": "nodemon gateway.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express-http-proxy": "^1.6.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

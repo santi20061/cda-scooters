@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    expose:
+      - "27017"
+
+  whatsapp-service:
+    build: ./services/whatsapp-service
+    environment:
+      - PORT=3004
+    expose:
+      - "3004"
+    volumes:
+      - whatsapp_auth:/app/.wwebjs_auth
+    restart: unless-stopped
+
+  contact-service:
+    build: ./services/contact-service
+    env_file: ./services/contact-service/.env
+    environment:
+      - PORT=3001
+      - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
+    expose:
+      - "3001"
+    depends_on:
+      - whatsapp-service
+    restart: unless-stopped
+
+  appointment-service:
+    build: ./services/appointment-service
+    env_file: ./services/appointment-service/.env
+    environment:
+      - PORT=3002
+      - MONGODB_URI=mongodb://mongo:27017/cda-appointments
+      - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
+    expose:
+      - "3002"
+    depends_on:
+      - mongo
+      - whatsapp-service
+    restart: unless-stopped
+
+  chatbot-service:
+    build: ./services/chatbot-service
+    env_file: ./services/chatbot-service/.env
+    environment:
+      - PORT=3003
+    expose:
+      - "3003"
+    restart: unless-stopped
+
+  gateway:
+    build: ./gateway
+    environment:
+      - PORT=3000
+      - CONTACT_SERVICE_URL=http://contact-service:3001
+      - APPOINTMENT_SERVICE_URL=http://appointment-service:3002
+      - CHATBOT_SERVICE_URL=http://chatbot-service:3003
+    ports:
+      - "3000:3000"
+    depends_on:
+      - contact-service
+      - appointment-service
+      - chatbot-service
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+  whatsapp_auth:

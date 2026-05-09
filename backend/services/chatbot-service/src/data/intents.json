@@ -1,0 +1,50 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": ["hola", "buenas", "buenos dias", "buenas tardes", "buenas noches", "hey", "saludos"],
+      "response": "¡Hola! Bienvenido a CDA Scooters SAS. ¿En qué puedo ayudarte hoy?"
+    },
+    {
+      "tag": "horario",
+      "patterns": ["horario", "hora", "cuando atienden", "abren", "cierran", "a que hora", "atienden"],
+      "response": "Atendemos de lunes a viernes de 7AM a 6PM, sábados de 7AM a 4PM y festivos de 8AM a 12M."
+    },
+    {
+      "tag": "precio",
+      "patterns": ["precio", "tarifa", "cuanto cuesta", "valor", "costo", "cuanto vale", "cuanto cobran"],
+      "response": "La revisión técnico-mecánica para motocicletas tiene un costo de $218.000 y para vehículos livianos y motocarros $318.000."
+    },
+    {
+      "tag": "documentos",
+      "patterns": ["documentos", "requisitos", "que necesito", "que debo traer", "papeles", "que llevar"],
+      "response": "Debe traer: SOAT vigente, matrícula del vehículo y cédula del propietario."
+    },
+    {
+      "tag": "cita",
+      "patterns": ["cita", "agendar", "reservar", "programar", "turno", "quiero una cita"],
+      "response": "Para agendar su cita puede usar el formulario en nuestra página web o escribirnos al WhatsApp +57 311 800 6270."
+    },
+    {
+      "tag": "ubicacion",
+      "patterns": ["donde", "ubicacion", "direccion", "como llegar", "donde quedan", "donde estan"],
+      "response": "Estamos ubicados en Acacías, Meta. Para indicaciones exactas llámenos al +57 311 800 6270."
+    },
+    {
+      "tag": "servicios",
+      "patterns": ["servicio", "servicios", "que hacen", "que ofrecen", "revision", "que revisan"],
+      "response": "Realizamos revisión técnico-mecánica y de emisiones contaminantes para motocicletas, vehículos livianos y motocarros. Registro ONAC: 17-OIN-054, Clase D."
+    },
+    {
+      "tag": "contacto",
+      "patterns": ["contacto", "telefono", "correo", "email", "whatsapp", "llamar", "comunicarme"],
+      "response": "Puedes contactarnos al +57 311 800 6270 o al correo cda.scootersacacias@gmail.com"
+    },
+    {
+      "tag": "despedida",
+      "patterns": ["adios", "chao", "hasta luego", "bye", "gracias", "muchas gracias"],
+      "response": "¡Hasta pronto! Recuerda que en CDA Scooters estamos para servirte. 🏍️"
+    }
+  ],
+  "default": "En este momento no puedo procesar tu consulta. Contáctanos al +57 311 800 6270 o por WhatsApp."
+}
