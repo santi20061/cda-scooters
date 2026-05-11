@@ -1,4 +1,4 @@
-FROM node:18-alpine
+﻿FROM node:18-alpine
 
 RUN apk add --no-cache \
     chromium \
@@ -13,7 +13,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install --omit=dev
 COPY src/ ./src/
 EXPOSE 3004
 CMD ["node", "src/index.js"]
+

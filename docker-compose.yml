@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
 
   whatsapp-service:
-    build: ./services/whatsapp-service
+    build: ./backend/services/whatsapp-service
     container_name: cda-whatsapp
     environment:
       - PORT=3004
@@ -14,9 +12,9 @@ services:
     restart: unless-stopped
 
   contact-service:
-    build: ./services/contact-service
+    build: ./backend/services/contact-service
     container_name: cda-contact
-    env_file: ./services/contact-service/.env
+    env_file: ./backend/services/contact-service/.env
     environment:
       - PORT=3001
       - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
@@ -27,9 +25,9 @@ services:
     restart: unless-stopped
 
   appointment-service:
-    build: ./services/appointment-service
+    build: ./backend/services/appointment-service
     container_name: cda-appointments
-    env_file: ./services/appointment-service/.env
+    env_file: ./backend/services/appointment-service/.env
     environment:
       - PORT=3002
       - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
@@ -40,7 +38,7 @@ services:
     restart: unless-stopped
 
   chatbot-service:
-    build: ./services/chatbot-service
+    build: ./backend/services/chatbot-service
     container_name: cda-chatbot
     environment:
       - PORT=3003
@@ -49,7 +47,7 @@ services:
     restart: unless-stopped
 
   gateway:
-    build: ./gateway
+    build: ./backend/gateway
     container_name: cda-gateway
     environment:
       - PORT=3000

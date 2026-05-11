@@ -1,7 +1,9 @@
 'use strict';
 
-const Appointment      = require('../models/Appointment');
-const { sendWhatsApp } = require('../services/whatsappService');
+const Appointment              = require('../models/Appointment');
+const { sendWhatsApp }         = require('../services/whatsappService');
+const { sendAppointmentEmail } = require('../services/emailService');
+const config                   = require('../config/config');
 
 async function createAppointment(req, res, next) {
   try {
@@ -14,14 +16,26 @@ async function createAppointment(req, res, next) {
       });
     }
 
+    // Guardar en CDA_db.nose
     const appointment = await Appointment.create({
       nombre, correo, telefono, fecha, hora, servicio,
     });
 
+    // WhatsApp al cliente
     sendWhatsApp(
       telefono,
       `Hola ${nombre}, tu cita fue agendada para el ${fecha} a las ${hora}. ¡Te esperamos en CDA Scooters! 🏍️`
-    ).catch((e) => console.warn('[appointment] WhatsApp falló:', e.message));
+    ).catch((e) => console.warn('[appointment] WA cliente falló:', e.message));
+
+    // WhatsApp al admin
+    sendWhatsApp(
+      config.ADMIN_PHONE,
+      `📅 Nueva cita:\nCliente: ${nombre}\nTeléfono: ${telefono}\nFecha: ${fecha} ${hora}\nServicio: ${servicio}`
+    ).catch((e) => console.warn('[appointment] WA admin falló:', e.message));
+
+    // Email al admin
+    sendAppointmentEmail({ nombre, correo, telefono, fecha, hora, servicio })
+      .catch((e) => console.warn('[appointment] Email falló:', e.message));
 
     res.status(201).json({ ok: true, appointment });
   } catch (err) {

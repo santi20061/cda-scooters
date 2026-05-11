@@ -22,7 +22,7 @@ const AppointmentSchema = new mongoose.Schema(
       enum: ['pendiente', 'confirmada', 'cancelada'],
     },
   },
-  { timestamps: true }
+  { timestamps: true, collection: 'nose' }
 );
 
 module.exports = mongoose.model('Appointment', AppointmentSchema);
