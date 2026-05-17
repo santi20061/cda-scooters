@@ -248,20 +248,62 @@ class EnviarContactoCommand extends ICommand {
     const vehiculo = get("fvehicle")?.value        || "";
     const mensaje  = get("fmsg")?.value.trim()     || "";
 
-    if (!nombre || !correo) {
-      alert("Por favor completa nombre y correo electrónico.");
+    if (!nombre || !correo || !telefono || !mensaje) {
+      _mostrarFeedbackContacto("error", "Por favor completa nombre, correo, teléfono y mensaje.");
       return;
     }
+
+    const vehiculoTexto = get("fvehicle")?.selectedOptions?.[0]?.text || "";
+    const mensajeCompleto = [
+      `Nombre: ${nombre}`,
+      `Correo: ${correo}`,
+      `Teléfono: ${telefono}`,
+      vehiculoTexto ? `Tipo de vehículo: ${vehiculoTexto}` : "",
+      `Mensaje: ${mensaje}`,
+    ].filter(Boolean).join("\n");
+
+    const btn        = document.querySelector("#contacto form button[type='submit']");
+    const btnOrigHTML = btn ? btn.innerHTML : "";
+    if (btn) { btn.disabled = true; btn.textContent = "Enviando…"; }
+    _mostrarFeedbackContacto("loading", "Enviando su mensaje, por favor espere…");
+
+    // Usar URL absoluta cuando se abre directamente desde el sistema de archivos (file://)
+    const apiBase = window.location.protocol === "file:" ? "http://localhost:3000" : "";
+
     try {
-      await window.addDoc(window.collection(window.db, "contactos"),
-        { nombre, correo, telefono, vehiculo, mensaje, fecha: new Date() });
-      alert("¡Mensaje enviado correctamente! ✅");
+      const res = await fetch(`${apiBase}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, correo, telefono, mensaje: mensajeCompleto, vehiculo }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const errMsg = Array.isArray(data?.errors)
+          ? data.errors.join(", ")
+          : (data?.error || data?.mensaje || "No se pudo enviar el mensaje");
+        throw new Error(errMsg);
+      }
+
+      _mostrarFeedbackContacto("success", data?.mensaje || "¡Mensaje enviado correctamente! Le responderemos pronto.");
       ["fname","femail","fphone","fvehicle","fmsg"].forEach(id => { const el = get(id); if (el) el.value = ""; });
     } catch (err) {
-      console.error(err);
-      alert("Error al enviar el mensaje ❌");
+      console.error("[contacto]", err);
+      _mostrarFeedbackContacto("error", `Error: ${err.message || "No se pudo enviar. Intente de nuevo o escríbanos por WhatsApp."}`);
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = btnOrigHTML; }
     }
   }
+}
+
+function _mostrarFeedbackContacto(tipo, texto) {
+  const el = document.getElementById("contact-feedback");
+  if (!el) return;
+  el.className = `contact-feedback contact-feedback--${tipo}`;
+  el.textContent = texto;
+  el.style.display = "block";
+  if (tipo === "success") setTimeout(() => { if (el) el.style.display = "none"; }, 7000);
 }
 
 class AbrirWhatsAppCommand extends ICommand {

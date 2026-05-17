@@ -1,29 +1,43 @@
 services:
 
+  # ── WhatsApp Service ────────────────────────────────────────────────────────
   whatsapp-service:
     build: ./backend/services/whatsapp-service
     container_name: cda-whatsapp
+    env_file: ./backend/services/whatsapp-service/.env
     environment:
       - PORT=3004
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+      - WWEBJS_DATA_PATH=/data/.wwebjs_auth
     expose:
       - "3004"
+    ports:
+      - "3004:3004"
     volumes:
-      - whatsapp_auth:/app/.wwebjs_auth
+      - whatsapp_auth:/data/.wwebjs_auth
+    shm_size: '1gb'
     restart: unless-stopped
+    networks:
+      - cda-net
 
+  # ── Contact Service ─────────────────────────────────────────────────────────
   contact-service:
     build: ./backend/services/contact-service
     container_name: cda-contact
     env_file: ./backend/services/contact-service/.env
     environment:
       - PORT=3001
+      # Nombre de servicio Docker — sobreescribe el localhost del .env
       - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
     expose:
       - "3001"
     depends_on:
       - whatsapp-service
     restart: unless-stopped
+    networks:
+      - cda-net
 
+  # ── Appointment Service ─────────────────────────────────────────────────────
   appointment-service:
     build: ./backend/services/appointment-service
     container_name: cda-appointments
@@ -36,7 +50,10 @@ services:
     depends_on:
       - whatsapp-service
     restart: unless-stopped
+    networks:
+      - cda-net
 
+  # ── Chatbot Service ─────────────────────────────────────────────────────────
   chatbot-service:
     build: ./backend/services/chatbot-service
     container_name: cda-chatbot
@@ -45,7 +62,10 @@ services:
     expose:
       - "3003"
     restart: unless-stopped
+    networks:
+      - cda-net
 
+  # ── API Gateway ─────────────────────────────────────────────────────────────
   gateway:
     build: ./backend/gateway
     container_name: cda-gateway
@@ -54,13 +74,35 @@ services:
       - CONTACT_SERVICE_URL=http://contact-service:3001
       - APPOINTMENT_SERVICE_URL=http://appointment-service:3002
       - CHATBOT_SERVICE_URL=http://chatbot-service:3003
+      - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
     ports:
       - "3000:3000"
     depends_on:
       - contact-service
       - appointment-service
       - chatbot-service
+      - whatsapp-service
     restart: unless-stopped
+    networks:
+      - cda-net
 
+  # ── Frontend (nginx) ────────────────────────────────────────────────────────
+  frontend:
+    build: ./frontend
+    container_name: cda-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - gateway
+    restart: unless-stopped
+    networks:
+      - cda-net
+
+# ── Volúmenes ───────────────────────────────────────────────────────────────
 volumes:
   whatsapp_auth:
+
+# ── Red interna ─────────────────────────────────────────────────────────────
+networks:
+  cda-net:
+    driver: bridge

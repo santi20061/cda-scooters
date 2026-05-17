@@ -10,7 +10,19 @@ const errorHandler  = require('./middleware/errorHandler');
 require('./services/whatsappClient');
 
 const app = express();
-app.use(express.json());
+app.use((req, _res, next) => {
+  console.log(`[whatsapp-service] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
+app.use(express.json({ limit: '1mb' }));
+
+app.use((err, _req, res, next) => {
+  if (err && err.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'JSON invalido' });
+  }
+  next(err);
+});
 
 app.get('/health', (_req, res) =>
   res.json({ status: 'ok', service: 'whatsapp-service' })

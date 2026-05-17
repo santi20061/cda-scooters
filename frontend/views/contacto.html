@@ -1,4 +1,18 @@
 <!-- ── VISTA: CONTACTO ───────────────────────────────────────────────────── -->
+<style>
+.contact-feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.contact-feedback--loading { background:#e8f4fd; color:#1a6fa8; border-left:4px solid #1a6fa8; }
+.contact-feedback--success { background:#e6f9f0; color:#1a7a4a; border-left:4px solid #1a7a4a; }
+.contact-feedback--error   { background:#fdecea; color:#c0392b; border-left:4px solid #c0392b; }
+</style>
 
 <section id="contacto" style="padding:88px 0 64px; background:var(--bg);">
   <div class="container">
@@ -96,7 +110,7 @@
           <div class="form-row">
             <div class="form-group">
               <label for="fphone">Teléfono</label>
-              <input type="tel" id="fphone" placeholder="311 800 6270" />
+              <input type="tel" id="fphone" placeholder="311 800 6270" required />
             </div>
             <div class="form-group">
               <label for="fvehicle">Tipo de vehículo</label>
@@ -109,8 +123,9 @@
           </div>
           <div class="form-group">
             <label for="fmsg">Mensaje</label>
-            <textarea id="fmsg" placeholder="Escriba su consulta o comentario..."></textarea>
+            <textarea id="fmsg" placeholder="Escriba su consulta o comentario..." required></textarea>
           </div>
+          <div id="contact-feedback" class="contact-feedback" role="alert" aria-live="polite"></div>
           <button type="submit" class="btn btn-azul btn-block btn-lg">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="22" y1="2" x2="11" y2="13"/>
