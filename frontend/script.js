@@ -34,6 +34,9 @@ function _sanitizar(texto) {
 }
 
 function _obtenerApiBase() {
+  const apiBase = (window.__API_BASE_URL__ || "").trim();
+  if (apiBase) return apiBase.replace(/\/$/, "");
+
   return (window.location.protocol === "file:" || ((window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") && window.location.port !== "3000"))
     ? "http://localhost:3000"
     : "";
