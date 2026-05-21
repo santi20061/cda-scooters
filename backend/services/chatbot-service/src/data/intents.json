@@ -23,7 +23,7 @@
     {
       "tag": "cita",
       "patterns": ["cita", "agendar", "reservar", "programar", "turno", "quiero una cita"],
-      "response": "Para agendar su cita puede usar el formulario en nuestra página web o escribirnos al WhatsApp +57 311 800 6270."
+      "response": "Para agendar su cita puede usar el formulario en nuestra página web o contactarnos por correo."
     },
     {
       "tag": "ubicacion",
@@ -37,7 +37,7 @@
     },
     {
       "tag": "contacto",
-      "patterns": ["contacto", "telefono", "correo", "email", "whatsapp", "llamar", "comunicarme"],
+      "patterns": ["contacto", "telefono", "correo", "email", "llamar", "comunicarme"],
       "response": "Puedes contactarnos al +57 311 800 6270 o al correo cda.scootersacacias@gmail.com"
     },
     {
@@ -46,5 +46,5 @@
       "response": "¡Hasta pronto! Recuerda que en CDA Scooters estamos para servirte. 🏍️"
     }
   ],
-  "default": "En este momento no puedo procesar tu consulta. Contáctanos al +57 311 800 6270 o por WhatsApp."
+  "default": "En este momento no puedo procesar tu consulta. Contáctanos por el formulario o por correo."
 }

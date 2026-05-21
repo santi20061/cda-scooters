@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 const CONTACT_SERVICE_URL     = process.env.CONTACT_SERVICE_URL     || 'http://localhost:3001';
 const APPOINTMENT_SERVICE_URL = process.env.APPOINTMENT_SERVICE_URL || 'http://localhost:3002';
 const CHATBOT_SERVICE_URL     = process.env.CHATBOT_SERVICE_URL     || 'http://localhost:3003';
-const WHATSAPP_SERVICE_URL    = process.env.WHATSAPP_SERVICE_URL    || 'http://localhost:3004';
 
 app.use(cors({
   origin: '*',
@@ -80,7 +79,6 @@ app.get('/health', (_req, res) =>
 createServiceProxy('/api/contact', CONTACT_SERVICE_URL, { '^/api/contact': '/contact' }, 'contact-service');
 createServiceProxy('/api/appointments', APPOINTMENT_SERVICE_URL, { '^/api/appointments': '/appointments' }, 'appointment-service');
 createServiceProxy('/api/chatbot', CHATBOT_SERVICE_URL, { '^/api/chatbot': '' }, 'chatbot-service');
-createServiceProxy('/api/whatsapp', WHATSAPP_SERVICE_URL, { '^/api/whatsapp': '' }, 'whatsapp-service');
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada', path: req.originalUrl });
@@ -91,5 +89,4 @@ app.listen(PORT, () => {
   console.log(`   /api/contact      → ${CONTACT_SERVICE_URL}`);
   console.log(`   /api/appointments → ${APPOINTMENT_SERVICE_URL}`);
   console.log(`   /api/chatbot      → ${CHATBOT_SERVICE_URL}`);
-  console.log(`   /api/whatsapp     → ${WHATSAPP_SERVICE_URL}\n`);
 });

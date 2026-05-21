@@ -4,12 +4,16 @@ const { Router } = require('express');
 const {
   createAppointment,
   getAppointments,
-  cancelAppointment,
+  updateAppointmentState,
+  updateAppointment,
 } = require('../controllers/appointmentController');
+const { validateAppointment } = require('../middleware/validator');
 
 const router = Router();
-router.post('/appointments',       createAppointment);
-router.get('/appointments',        getAppointments);
-router.delete('/appointments/:id', cancelAppointment);
+
+router.get('/appointments', getAppointments);
+router.post('/appointments', validateAppointment, createAppointment);
+router.patch('/appointments/:id', updateAppointment);
+router.patch('/appointments/:id/estado', updateAppointmentState);
 
 module.exports = router;

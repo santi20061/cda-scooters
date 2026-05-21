@@ -33,6 +33,12 @@ function _sanitizar(texto) {
   return div.innerHTML;
 }
 
+function _obtenerApiBase() {
+  return (window.location.protocol === "file:" || ((window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") && window.location.port !== "3000"))
+    ? "http://localhost:3000"
+    : "";
+}
+
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  PATRÓN: COMPOSITE
@@ -207,7 +213,7 @@ class CerrarModalCommand extends ICommand {
 }
 
 class SubmitModalCommand extends ICommand {
-  execute() {
+  async execute() {
     const get    = id => document.getElementById(id);
     const nombre = get("m-nombre").value.trim();
     const tel    = get("m-tel").value.trim();
@@ -223,19 +229,55 @@ class SubmitModalCommand extends ICommand {
     }
 
     const tipoTxt = tipoEl.options[tipoEl.selectedIndex]?.text || "";
-    const msg = [
-      "🚗 *Solicitud de cita — CDA Scooters SAS*", "",
-      `👤 *Nombre:* ${nombre}`,
-      `📱 *Teléfono:* ${tel}`,
-      `🔢 *Placa:* ${placa}`,
-      `🚘 *Tipo de vehículo:* ${tipoTxt}`,
-      `📅 *Fecha preferida:* ${fecha}`,
-      `⏰ *Hora preferida:* ${hora}`,
-      nota ? `📝 *Observaciones:* ${nota}` : ""
-    ].filter(Boolean).join("\n");
+    const apiBase = _obtenerApiBase();
+    const btn = document.getElementById("appointment-submit-btn");
+    const btnOriginal = btn ? btn.innerHTML : "";
 
-    window.open("https://wa.me/573118006270?text=" + encodeURIComponent(msg), "_blank", "noopener");
-    new CerrarModalCommand().execute();
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Enviando…";
+    }
+
+    try {
+      const res = await fetch(`${apiBase}/api/appointments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre,
+          telefono: tel,
+          placa,
+          tipoVehiculo: tipoTxt,
+          fecha,
+          hora,
+          servicio: "Revisión técnico-mecánica",
+          observaciones: nota,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const errorMsg = Array.isArray(data?.errors)
+          ? data.errors.join(", ")
+          : (data?.error || data?.mensaje || "No se pudo registrar la cita");
+        throw new Error(errorMsg);
+      }
+
+      alert(data?.mensaje || "Solicitud registrada y enviada por WhatsApp.");
+      ["m-nombre", "m-tel", "m-placa", "m-tipo", "m-fecha", "m-hora", "m-nota"].forEach(id => {
+        const el = get(id);
+        if (el) el.value = "";
+      });
+      new CerrarModalCommand().execute();
+    } catch (error) {
+      console.error("[appointment]", error);
+      alert(`Error: ${error.message || "No se pudo enviar la solicitud"}`);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = btnOriginal;
+      }
+    }
   }
 }
 
@@ -267,8 +309,8 @@ class EnviarContactoCommand extends ICommand {
     if (btn) { btn.disabled = true; btn.textContent = "Enviando…"; }
     _mostrarFeedbackContacto("loading", "Enviando su mensaje, por favor espere…");
 
-    // Usar URL absoluta cuando se abre directamente desde el sistema de archivos (file://)
-    const apiBase = window.location.protocol === "file:" ? "http://localhost:3000" : "";
+    // Usar URL absoluta cuando se abre desde file:// o desde un servidor de desarrollo distinto al gateway
+    const apiBase = _obtenerApiBase();
 
     try {
       const res = await fetch(`${apiBase}/api/contact`, {
@@ -388,14 +430,15 @@ class EstadoEsperando extends ChatState {
   async enviar(texto) {
     this._ctx.mostrarTyping(this._dotsId);
     try {
-      const res  = await fetch("https://cda-scooters.onrender.com/chat", {
+      const apiBase = _obtenerApiBase();
+      const res  = await fetch(`${apiBase}/api/chatbot/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: texto })
       });
       const data = await res.json();
       this._ctx.quitarTyping(this._dotsId);
-      this._ctx.mostrarMensaje(data.reply, "bot");
+      this._ctx.mostrarMensaje(data.response || data.reply || "No pude obtener una respuesta.", "bot");
     } catch {
       this._ctx.quitarTyping(this._dotsId);
       this._ctx.mostrarMensaje(

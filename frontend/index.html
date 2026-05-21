@@ -289,7 +289,7 @@
     </button>
     <div class="modal-header">
       <p class="modal-title" id="modal-title">Agendar cita</p>
-      <p class="modal-sub">Complete el formulario y le confirmaremos su cita por WhatsApp.</p>
+      <p class="modal-sub">Complete el formulario y enviaremos su solicitud automáticamente al WhatsApp de atención.</p>
     </div>
     <div class="form-row">
       <div class="form-group"><label for="m-nombre">Nombre completo *</label><input type="text" id="m-nombre" placeholder="Su nombre" /></div>
@@ -318,8 +318,8 @@
       </div>
     </div>
     <div class="form-group"><label for="m-nota">Observaciones (opcional)</label><textarea id="m-nota" placeholder="Información adicional sobre su vehículo..."></textarea></div>
-    <button class="btn btn-amarillo btn-block btn-lg" onclick="submitModal()" style="margin-top:6px;">
-      Confirmar solicitud vía WhatsApp
+    <button id="appointment-submit-btn" class="btn btn-amarillo btn-block btn-lg" onclick="submitModal()" style="margin-top:6px;">
+      Confirmar solicitud
     </button>
     <p style="font-size:.75rem;color:var(--gris-medio);text-align:center;margin-top:12px;">
       También puede llamarnos al <strong>+57 311 800 6270</strong>

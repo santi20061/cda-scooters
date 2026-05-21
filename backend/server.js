@@ -270,9 +270,9 @@ class FallbackStrategy extends IAStrategy {
       { patron: /document|requisi|necesit/i,
         resp: "Necesita traer: SOAT vigente, matrícula del vehículo y cédula del propietario." },
       { patron: /cit|agend/i,
-        resp: "Para agendar su cita escríbanos al WhatsApp +57 311 800 6270 o use el formulario de la página." },
+        resp: "Para agendar su cita use el formulario de la página o escríbanos por correo." },
     ];
-    this._default = "En este momento no puedo procesar su consulta automáticamente. Contáctenos al +57 311 800 6270 o por WhatsApp.";
+    this._default = "En este momento no puedo procesar su consulta automáticamente. Contáctenos por el formulario o por correo.";
   }
 
   async responder(mensaje) {
@@ -375,7 +375,7 @@ class CDAFacade {
       return { ok: true, reply };
     } catch (err) {
       this._bus.emit("error:ia", { mensaje: err.message });
-      return { ok: false, error: "El asistente no está disponible en este momento. Contáctanos al WhatsApp." };
+      return { ok: false, error: "El asistente no está disponible en este momento. Contáctanos por el formulario o por correo." };
     }
   }
 

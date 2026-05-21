@@ -1,11 +1,12 @@
 'use strict';
 
-const mongoose   = require('mongoose');
-const { MONGODB_URI } = require('./config');
+const mongoose = require('mongoose');
+const { MONGO_URI, MONGO_DB_NAME } = require('./config');
 
-async function connectDB() {
-  await mongoose.connect(MONGODB_URI);
-  console.log('✅ MongoDB conectado:', MONGODB_URI);
+async function connectDatabase() {
+  mongoose.set('strictQuery', true);
+  await mongoose.connect(MONGO_URI, { dbName: MONGO_DB_NAME });
+  console.log('[appointment-service] MongoDB conectado');
 }
 
-module.exports = { connectDB };
+module.exports = { connectDatabase };

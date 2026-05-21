@@ -1,29 +1,27 @@
 version: "3.9"
 
 services:
-
-  whatsapp-service:
-    build: ./services/whatsapp-service
-    container_name: cda-whatsapp
-    environment:
-      - PORT=3004
-    expose:
-      - "3004"
+  mongo:
+    image: mongo:7
+    container_name: cda-mongo
+    ports:
+      - "27017:27017"
     volumes:
-      - whatsapp_auth:/app/.wwebjs_auth
+      - mongo_data:/data/db
     restart: unless-stopped
 
   contact-service:
     build: ./services/contact-service
     container_name: cda-contact
-    env_file: ./services/contact-service/.env
     environment:
       - PORT=3001
-      - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
+      - EMAIL_HOST=smtp.gmail.com
+      - EMAIL_PORT=587
+      - EMAIL_USER=tu-correo@gmail.com
+      - EMAIL_PASS=tu-app-password-de-gmail
+      - EMAIL_DEST=destino@gmail.com
     expose:
       - "3001"
-    depends_on:
-      - whatsapp-service
     restart: unless-stopped
 
   appointment-service:
@@ -31,12 +29,11 @@ services:
     container_name: cda-appointments
     env_file: ./services/appointment-service/.env
     environment:
-      - PORT=3002
-      - WHATSAPP_SERVICE_URL=http://whatsapp-service:3004
+      - MONGO_URI_ATLAS=${MONGO_URI_ATLAS:-}
+    depends_on:
+      - mongo
     expose:
       - "3002"
-    depends_on:
-      - whatsapp-service
     restart: unless-stopped
 
   chatbot-service:
@@ -44,6 +41,7 @@ services:
     container_name: cda-chatbot
     environment:
       - PORT=3003
+      - APPOINTMENT_SERVICE_URL=http://appointment-service:3002
     expose:
       - "3003"
     restart: unless-stopped
@@ -65,4 +63,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  whatsapp_auth:
+  mongo_data:

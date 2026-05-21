@@ -8,5 +8,4 @@ module.exports = {
   EMAIL_USER:            process.env.EMAIL_USER,
   EMAIL_PASS:            process.env.EMAIL_PASS,
   EMAIL_DEST:            process.env.EMAIL_DEST            || process.env.EMAIL_USER,
-  WHATSAPP_SERVICE_URL:  process.env.WHATSAPP_SERVICE_URL  || 'http://localhost:3004',
 };
